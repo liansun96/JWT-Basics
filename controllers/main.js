@@ -2,7 +2,7 @@
 //if exist create new JWT
 //send back to front-end
 
-const CustomAPIError = require("../errors/custom-error");
+const { BadRequestError } = require("../errors");
 const jwt = require("jsonwebtoken");
 
 //setup authentication so only the requst with JWT can access the dashboard
@@ -19,7 +19,7 @@ const login = async (req, res) => {
   //try to keep payload small , better experience for user
   //just for demo , in production use long, complex and unguessable value!!!
   if (!username || !password) {
-    throw new CustomAPIError("Pleace Provide Emain & Password", 400);
+    throw new BadRequestError("Pleace Provide Emain & Password");
   }
 
   const token = jwt.sign({ id, username }, process.env.JWT_SECRET, {
