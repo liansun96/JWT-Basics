@@ -2,12 +2,12 @@ const jwt = require("jsonwebtoken");
 const UnauthenticatedError = require("../errors/unauthenticated");
 
 const authenticationMiddleware = async(req, res, next) => {
-    const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     throw new UnauthenticatedError("No token provided");
-  }
- 
+  }  
+
   // console.log(authHeader)
   const token = authHeader.split(" ")[1];
   // console.log(token);
